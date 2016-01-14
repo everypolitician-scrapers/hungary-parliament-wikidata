@@ -10,6 +10,6 @@ names = EveryPolitician::Wikidata.wikipedia_xpath(
   xpath: './/ul/li/a[not(@class="new")]/@title',
 ) 
 
-EveryPolitician::Wikidata.scrape_wikidata(names: { hu: names }, output: true)
+EveryPolitician::Wikidata.scrape_wikidata(names: { hu: names }, output: false)
 warn EveryPolitician::Wikidata.notify_rebuilder
 
