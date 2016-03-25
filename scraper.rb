@@ -11,7 +11,4 @@ hu_names = EveryPolitician::Wikidata.wikipedia_xpath(
 ) 
 
 en_names = WikiData::Category.new( 'Category:Members of the National Assembly of Hungary (2014–18)', 'en').member_titles
-
 EveryPolitician::Wikidata.scrape_wikidata(names: { hu: hu_names, en: en_names }, output: false)
-warn EveryPolitician::Wikidata.notify_rebuilder
-
