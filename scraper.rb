@@ -12,15 +12,10 @@ hu_names = EveryPolitician::Wikidata.wikipedia_xpath(
 en_names = WikiData::Category.new( 'Category:Members of the National Assembly of Hungary (2014–18)', 'en').member_titles
 
 query = <<EOS
-  SELECT DISTINCT ?item
-  WHERE
-  {
-    BIND(wd:Q17590876 AS ?membership)
-    BIND(wd:Q29861546 AS ?term)
-
-    ?item p:P39 ?position_statement .
-    ?position_statement ps:P39 ?membership .
-    ?position_statement pq:P2937 ?term .
+  SELECT DISTINCT ?item WHERE {
+    ?item p:P39 [ ps:P39 wd:Q17590876 ; pq:P2937 ?term ] .
+    ?term p:P31/pq:P1545 ?ordinal .
+    FILTER (xsd:integer(?ordinal) >= 40)
   }
 EOS
 p39s = EveryPolitician::Wikidata.sparql(query)
